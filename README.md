@@ -1,3 +1,3 @@
-# vignette-group_11
+# vignette-bootstrapping
 
 Bootstrapping
