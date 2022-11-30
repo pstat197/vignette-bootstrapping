@@ -1,0 +1,27 @@
+---
+title: "Bootstrapping with Linear Regression Vignette"
+author: "Aria Kajeh, Evan Ji, Yujie Li, William Long"
+format: html
+editor: visual
+---
+
+## Bootstrapping Overview
+
+Defined by Oxford languages as a verb for getting into or out of a situation using existing resources, bootstrapping in data science carries a similar meaning. Bootstrapping is a tool that can be applied to almost any model in order to construct confidence intervals, calculate standard error, and perform hypothesis testing on numerous different sample statistics. This is all possible through bootstrapping's resampling functionality in which it "utilizes its existing resources" by resampling the provided original data set with replacement multiple times(up to thousands) to create new resampled datasets of the same size as the original dataset. Once these simulated datasets are gathered the sample statistics across all newly resampled datasets are compared and analyzed as the new sampling distribution, providing more valuable data for impressions and predictions to be made from.
+
+## Running Code
+
+When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
+
+```{r}
+1 + 1
+```
+
+You can add options to executable code like this
+
+```{r}
+#| echo: false
+2 * 2
+```
+
+The `echo: false` option disables the printing of code (only output is displayed).
