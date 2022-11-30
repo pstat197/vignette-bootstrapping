@@ -15,19 +15,20 @@ First we must create a function, this will tell the bootstrapping method what st
 ```{r}
 functionmean <- function(data,i){
   dataframe1<-data[i,] #this step is used for indexing row
-  return(mean(data$declared_weight))
+  return(mean(dataframe1$finish_time))
 }
 ```
 Now let us apply the boot function.
 
 ```{r}
 set.seed(1)
-declared_weight_bootstrapmean<-boot(weightestimate,functionmean,R=10000)
+declared_weight_bootstrapmean<-boot(weightestimate,functionmean,R=1000)
 ```
 The boot function takes 3 arguments. The first is the data, then the function of the statistic, and R is the number of resample or repetitions.
 
 ```{r}
 declared_weight_bootstrapmean
-mean(weightestimate$declared_weight)
+range(declared_weight_bootstrapmean$t0)
+mean(weightestimate$finish_time)
 ```
 
