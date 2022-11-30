@@ -6,7 +6,11 @@ Contributors: Yujie Li, Aria Kajeh, Evan Ji, William Long
 
 ## Description
 
+### Abstract
 
+We will use the example data to demonstrate that we can use bootstrapping:
+   to estimate the population mean of the actual weight of all the data.
+   to fit a model on sample data that fits the population well.
 
 ### Example Data
 
