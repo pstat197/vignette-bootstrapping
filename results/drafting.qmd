@@ -1,0 +1,33 @@
+First install the boot package. Run the below code in your console.
+```{r}
+install.packages('boot')
+```
+
+```{r}
+library('boot')
+```
+
+
+Let us take a look at the most basic use of bootstrapping. As it is a resampling method, bootstrapping allows us to create confidence intervals of summary statistics. Let us take a look at this in the context of declared weights in our data. 
+
+First we must create a function, this will tell the bootstrapping method what statistice we are interested in. For our demonstration purposes, we will keep it simple and choose mean as our statistic of interest. Feel free to change the statistics however, with cor(),sd() or any other statistic.
+
+```{r}
+functionmean <- function(data,i){
+  dataframe1<-data[i,] #this step is used for indexing row
+  return(mean(data$declared_weight))
+}
+```
+Now let us apply the boot function.
+
+```{r}
+set.seed(1)
+declared_weight_bootstrapmean<-boot(weightestimate,functionmean,R=10000)
+```
+The boot function takes 3 arguments. The first is the data, then the function of the statistic, and R is the number of resample or repetitions.
+
+```{r}
+declared_weight_bootstrapmean
+mean(weightestimate$declared_weight)
+```
+
