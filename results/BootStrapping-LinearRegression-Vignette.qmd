@@ -7,17 +7,109 @@ editor: visual
 
 # Bootstrapping Overview
 
-Derived from the root word "bootstrap" and defined by Oxford Dictionary as a verb for getting into or out of a situation using existing resources, bootstrapping in data science carries a similar self sufficient meaning. Bootstrapping is a tool that can be applied to almost any data set in order to construct confidence intervals, calculate standard error, and perform hypothesis testing on numerous different sample statistics.
-Bootstrapping is self sufficient in that it "utilizes its existing resources" by resampling a provided original data set with replacement numerous times(up to thousands) to create numerous new resampled datasets of the same size as the original dataset. Once these simulated datasets are gathered, the sample statistics across all newly resampled datasets are compared and analyzed as the new sampling distribution, providing more valuable data that is more representative of the population the sample was initially gathered from. Creating summary statistics and data that is much more representative of the analyzed population allows for the impressions and predictions made from this data set to be of higher validity than those based merely on the smaller original sample, boosting confidence in predictions.
+Derived from the root word "bootstrap" and defined by Oxford Dictionary as a verb for getting into or out of a situation using existing resources, bootstrapping in data science carries a similar self sufficient meaning. Bootstrapping is a tool that can be applied to almost any data set in order to construct confidence intervals, calculate standard error, and perform hypothesis testing on numerous different sample statistics. Bootstrapping is self sufficient in that it "utilizes its existing resources" by resampling a provided original data set with replacement numerous times(up to thousands) to create numerous new resampled datasets of the same size as the original dataset. Once these simulated datasets are gathered, the sample statistics across all newly resampled datasets are compared and analyzed as the new sampling distribution, providing more valuable data that is more representative of the population the sample was initially gathered from. Creating summary statistics and data that is much more representative of the analyzed population allows for the impressions and predictions made from this data set to be of higher validity than those based merely on the smaller original sample, boosting confidence in predictions.
 
 # Why Bootstrap?
+
 Bootstrapping is desirable in many situations as its resampling can be used to assist in providing better data through estimation of possible sampling distributions, better validating any predictions made. For instance, when stuck with a small dataset, as data scientists, we are weary of how well it is able to represent the entire population of which it is a subset of. Samples and their distributions vary each time they are taken, but through bootstrapping's high quantity resampling with replacement, sample statistics are able to be taken from each newly made dataset and compared across the other newly created datasets to form overarching sample distributions that can have confidence intervals or other hypothesis testing constructed from.
 
-# Bootstrapping in the context of Linear Regression
-
 # Non-parametric Bootstrapping
-There are two main types of bootstrapping, parametric and non-parametric. Non-parametric
-bootstrapping is the more simplistic core of bootstrapping and makes no assumption on the distribution of the provided sample and its observations. It resamples randomly, with each observation in the sample having an equal probability of being selected, pulling observations with replacement until new samples of the same size are created. Non-parametric bootstrapping is an effective method, however, can be problematic when used on extremely small datasets that may contain trends not present in the overarching population. Parametric on the other end is slightly more advanced in that it resamples the original sample data with a predetermined distribution function with parameters that are estimated the random sample.
+
+There are two main types of bootstrapping, parametric and non-parametric. Non-parametric bootstrapping is the more simplistic core of bootstrapping and makes no assumption on the distribution of the provided sample and its observations. It resamples randomly, with each observation in the sample having an equal probability of being selected, pulling observations with replacement until new samples of the same size are created. Non-parametric bootstrapping is an effective method, however, can be problematic when used on extremely small datasets that may contain trends not present in the overarching population. Parametric on the other end is slightly more advanced in that it resamples the original sample data with a predetermined distribution function with parameters that are estimated the random sample.
 
 # Application with Horse Racing data
 
+First install the boot package. Run the below code in your console.
+
+```{r}
+install.packages('boot')
+```
+
+```{r}
+library('boot')
+library('dplyr')
+```
+
+```{r}
+#preprocessing
+#we are subsetting the original, randomly selecting only 50 observations to show the benefits of bootstrapping.
+runsdata <- read.csv('~/Github/vignette-bootstrapping/data/raw/runs.csv') %>% sample_n(50)
+weightestimate <- runsdata %>% select(horse_age,declared_weight,actual_weight,finish_time,horse_id)
+
+
+```
+
+Let us take a look at the most basic use of bootstrapping. As it is a resampling method, bootstrapping allows us to create confidence intervals of summary statistics. Let us take a look at this in the context of declared weights in our data.
+
+First we must create a function, this will tell the bootstrapping method what statistic we are interested in. For our demonstration purposes, we will keep it simple and choose mean as our statistic of interest. Feel free to change the statistics however, with cor(),sd() or any other statistic. You can also change, the variable that is being examined between, horse_age,declared_weight,actual_weight,finish_time and horse_id. (If you choose horse_id you will probably see the greatest range in the confidence interval)
+
+```{r}
+functionmean <- function(data,i){
+  dataframe1<-data[i,] #this step is used for indexing row
+  return(mean(dataframe1$declared_weight))
+}
+```
+
+Now let us apply the boot function.
+
+```{r}
+set.seed(1)
+declared_weight_bootstrapmean<-boot(weightestimate,functionmean,R=1000)
+```
+
+The basic boot function takes 3 arguments. The first is the data, then the function of the statistic, and R is the number of resample or repetitions (generally 1000 resamples is a good number). For further documentation, go to https://www.rdocumentation.org/packages/boot/versions/1.3-28/topics/boot .
+
+Let us explore the object which is created with the boot function.
+
+```{r}
+declared_weight_bootstrapmean
+```
+
+You will find that t is a list of the sample statistics generated by resampling. You will also find that there are other parameters that the boot function can take, such as strata, stype, sim, and weights. We will focus on sim, specifically the 'parametric' value. The default of the boot function is to run a nonparametric bootstrap. Let us try different values for sim. (Note: Do not run a parametric bootstrap, it requires a distribution function not covered in this vignette.)
+
+```{r}
+declared_weight_balbootstrapmean<-boot(weightestimate,functionmean,R=1000,sim='balanced')
+```
+
+The balanced boostrap ensures that each observation occurs exactly R times across the union set of all resamples which means that each observation will affect the statistic exactly the same.
+
+```{r}
+declared_weight_bootstrapmean
+declared_weight_balbootstrapmean
+```
+
+# Bootstrapping in the context of Linear Regression
+
+```{r}
+library(boot)
+
+origin=read.csv("data/raw/runs.csv")
+source("scripts/data_cleaning.R")
+data=preprocessing(500)
+
+```
+
+We can also use bootstrapping to estimate the model coeficients for linear regression We build a logistic regression model to predict whether a horse will win in a race, using age, rating, declared weight, actual weight, and draw as predictors This is similar to bootstrapping for sample statistics, the only difference should be changing the returns for the function to be the coeficients of each fits.
+
+```{r}
+bs <- function(formula, data, indices) {
+  d <- data[indices,] # allows boot to select sample
+  fit <- glm(formula, data=d,family = "binomial")
+  return(coef(fit))
+}
+```
+
+re-sample for 10000 times
+
+```{r}
+results_10000 <- boot(data=data, statistic=bs,
+                R=10000, formula=won~horse_age+horse_rating+
+                declared_weight+ actual_weight+draw)
+results
+plot(results_10000, index=1) 
+plot(results_10000, index=2)
+plot(results_10000, index=3)
+plot(results_10000, index=4) 
+plot(results_10000, index=5)
+plot(results_10000, index=6)
+```
