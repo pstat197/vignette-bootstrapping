@@ -16,7 +16,7 @@ We will use the example data to demonstrate that we can use bootstrapping:
 
 ### Example Data
 
-The example data we used is a Kaggle dataset containing information from Hong Kong throughbred races from 6/1/1997 - 08/27/2005 (https://www.kaggle.com/datasets/gdaley/hkracing). In particular we are looking at the runs.csv file which contains information from specific horse runs in each race, including features such as the horse's country of origin, breed, age, etc... 
+The example data we used is a Kaggle dataset containing information from Hong Kong throughbred races from 6/1/1997 - 08/27/2005 (https://www.kaggle.com/datasets/gdaley/hkracing). In particular we are looking at the runs.csv file which contains information from specific horse runs in each race, including features such as the horse's breed, age, and whether they won that particular race or not. More information on the particular features of the dataset can be found on the Kaggle page. 
 
 
 
