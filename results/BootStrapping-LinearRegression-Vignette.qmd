@@ -7,31 +7,17 @@ editor: visual
 
 # Bootstrapping Overview
 
-Derived from the root word "bootstrap" that is defined by Oxford languages as a verb for getting into or out of a situation using existing resources, bootstrapping in data science carries a similar self sufficient meaning. Bootstrapping is a tool that can be applied to almost any model in order to construct confidence intervals, calculate standard error, and perform hypothesis testing on numerous different sample statistics. This is all possible through bootstrapping's resampling functionality in which it "utilizes its existing resources" by resampling a provided original data set with replacement numerous times(up to thousands) to create new resampled datasets of the same size as the original dataset. Once these simulated datasets are gathered, the sample statistics across all newly resampled datasets are compared and analyzed as the new sampling distribution, providing more valuable data for impressions and predictions to be made from.
+Derived from the root word "bootstrap" and defined by Oxford Dictionary as a verb for getting into or out of a situation using existing resources, bootstrapping in data science carries a similar self sufficient meaning. Bootstrapping is a tool that can be applied to almost any data set in order to construct confidence intervals, calculate standard error, and perform hypothesis testing on numerous different sample statistics.
+Bootstrapping is self sufficient in that it "utilizes its existing resources" by resampling a provided original data set with replacement numerous times(up to thousands) to create numerous new resampled datasets of the same size as the original dataset. Once these simulated datasets are gathered, the sample statistics across all newly resampled datasets are compared and analyzed as the new sampling distribution, providing more valuable data that is more representative of the population the sample was initially gathered from. Creating summary statistics and data that is much more representative of the analyzed population allows for the impressions and predictions made from this data set to be of higher validity than those based merely on the smaller original sample, boosting confidence in predictions.
 
 # Why Bootstrap?
-
-Bootstrapping is desirable in many situations as its resampling can be used to assist in providing better data through estimation of possible sampling distributions, better validating any predictions made. For instance, when stuck with a small dataset, as data scientists, we are weary of how well it is able to represent the entire population of which it is a subset of. Samples and their distributions vary each time they are taken, but through bootstrapping's high quantity resampling with replacement sample statistics are able to be taken from each newly made dataset and compared across the other newly created datasets to form overarching sample distributions that can have confidence intervals or other hypothesis testing constructed from.
+Bootstrapping is desirable in many situations as its resampling can be used to assist in providing better data through estimation of possible sampling distributions, better validating any predictions made. For instance, when stuck with a small dataset, as data scientists, we are weary of how well it is able to represent the entire population of which it is a subset of. Samples and their distributions vary each time they are taken, but through bootstrapping's high quantity resampling with replacement, sample statistics are able to be taken from each newly made dataset and compared across the other newly created datasets to form overarching sample distributions that can have confidence intervals or other hypothesis testing constructed from.
 
 # Bootstrapping in the context of Linear Regression
 
-# Parametric vs Non-parametric 
+# Non-parametric Bootstrapping
+There are two main types of bootstrapping, parametric and non-parametric. Non-parametric
+bootstrapping is the more simplistic core of bootstrapping and makes no assumption on the distribution of the provided sample and its observations. It resamples randomly, with each observation in the sample having an equal probability of being selected, pulling observations with replacement until new samples of the same size are created. Non-parametric bootstrapping is an effective method, however, can be problematic when used on extremely small datasets that may contain trends not present in the overarching population. Parametric on the other end is slightly more advanced in that it resamples the original sample data with a predetermined distribution function with parameters that are estimated the random sample.
 
 # Application with Horse Racing data
 
-## Running Code
-
-When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
-
-```{r}
-1 + 1
-```
-
-You can add options to executable code like this
-
-```{r}
-#| echo: false
-2 * 2
-```
-
-The `echo: false` option disables the printing of code (only output is displayed).
