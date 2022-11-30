@@ -49,6 +49,10 @@ jockey_id: Unique identifier of the jockey riding the horse in this race.
 
 ### Outcomes
 
+By the end of this vignette, students should have learned how to bootstrap a distribution of sample statistics from one representative sample of a population. 
+
+Students should also be able to construct confidence intervals from the distributions obtained from bootstrapping and be able to use that inferential knowledge to build more accurate regression models. 
+
 
 ## Contents
 
