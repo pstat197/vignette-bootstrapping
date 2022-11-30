@@ -5,9 +5,19 @@ format: html
 editor: visual
 ---
 
-## Bootstrapping Overview
+# Bootstrapping Overview
 
-Defined by Oxford languages as a verb for getting into or out of a situation using existing resources, bootstrapping in data science carries a similar meaning. Bootstrapping is a tool that can be applied to almost any model in order to construct confidence intervals, calculate standard error, and perform hypothesis testing on numerous different sample statistics. This is all possible through bootstrapping's resampling functionality in which it "utilizes its existing resources" by resampling the provided original data set with replacement multiple times(up to thousands) to create new resampled datasets of the same size as the original dataset. Once these simulated datasets are gathered the sample statistics across all newly resampled datasets are compared and analyzed as the new sampling distribution, providing more valuable data for impressions and predictions to be made from.
+Derived from the root word "bootstrap" that is defined by Oxford languages as a verb for getting into or out of a situation using existing resources, bootstrapping in data science carries a similar self sufficient meaning. Bootstrapping is a tool that can be applied to almost any model in order to construct confidence intervals, calculate standard error, and perform hypothesis testing on numerous different sample statistics. This is all possible through bootstrapping's resampling functionality in which it "utilizes its existing resources" by resampling a provided original data set with replacement numerous times(up to thousands) to create new resampled datasets of the same size as the original dataset. Once these simulated datasets are gathered, the sample statistics across all newly resampled datasets are compared and analyzed as the new sampling distribution, providing more valuable data for impressions and predictions to be made from.
+
+# Why Bootstrap?
+
+Bootstrapping is desirable in many situations as its resampling can be used to assist in providing better data through estimation of possible sampling distributions, better validating any predictions made. For instance, when stuck with a small dataset, as data scientists, we are weary of how well it is able to represent the entire population of which it is a subset of. Samples and their distributions vary each time they are taken, but through bootstrapping's high quantity resampling with replacement sample statistics are able to be taken from each newly made dataset and compared across the other newly created datasets to form overarching sample distributions that can have confidence intervals or other hypothesis testing constructed from.
+
+# Bootstrapping in the context of Linear Regression
+
+# Parametric vs Non-parametric 
+
+# Application with Horse Racing data
 
 ## Running Code
 
