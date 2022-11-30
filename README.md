@@ -6,6 +6,8 @@ Contributors: Yujie Li, Aria Kajeh, Evan Ji, William Long
 
 ## Description
 
+Bootstrapping is a statistical technique used for estimating population statistics using just the data from one representative sample. Since one sample can only provide one estimate for a particular population statistic, we cannot obtain any sense of variance from using just that one sample. Bootstrapping is the process of resampling with replacement from the original sample to obtain more representative samples of the population and allows us to generate a distribution of estimates. This makes it easier for us to perform hypothesis tests and construct confidence intervals, as well as helping us to make better inferences about the whole population.
+
 ### Abstract
 
 We will use the example data to demonstrate that we can use bootstrapping:
