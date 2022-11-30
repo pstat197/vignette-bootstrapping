@@ -49,12 +49,17 @@ trainer_id: Unique identifier of the horse's trainer at the time of the race
 
 jockey_id: Unique identifier of the jockey riding the horse in this race.
 
+### Outcomes
+
+
 ## Contents
 
 Our data/raw folder contains the .csv files from the original Kaggle dataset. We are mainly focused on runs.csv which contains information about individual horse performances in the Hong Kong races. 
 
 
-The scripts folder contains our preprocessing scripts for reading and cleaning the data, exploratory data analysis, and models to predict whether a horse is a winner or not. 
+The scripts folder contains our preprocessing scripts for reading and cleaning the data, exploratory data analysis, and our regression models. 
+
+Our results folder contains our drafts, writeups, and conclusions for the vignette.
 
 
 
