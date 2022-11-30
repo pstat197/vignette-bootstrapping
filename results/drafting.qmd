@@ -7,6 +7,14 @@ install.packages('boot')
 library('boot')
 library('dplyr')
 ```
+```{r}
+#preprocessing
+#we are subsetting the original, randomly selecting only 50 observations to show the benefits of bootstrapping.
+runsdata <- read.csv('~/Github/vignette-bootstrapping/data/raw/runs.csv') %>% sample_n(50)
+weightestimate <- runsdata %>% select(horse_age,declared_weight,actual_weight,finish_time,horse_id) %>% sample_n(50)
+
+
+```
 
 
 Let us take a look at the most basic use of bootstrapping. As it is a resampling method, bootstrapping allows us to create confidence intervals of summary statistics. Let us take a look at this in the context of declared weights in our data. 
