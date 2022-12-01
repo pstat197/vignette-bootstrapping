@@ -33,6 +33,7 @@ library('dplyr')
 ```{r}
 #preprocessing
 #we are subsetting the original, randomly selecting only 50 observations to show the benefits of bootstrapping.
+
 runsdata <- read.csv('~/Github/vignette-bootstrapping/data/raw/runs.csv') %>% sample_n(50)
 weightestimate <- runsdata %>% select(horse_age,declared_weight,actual_weight,finish_time,horse_id)
 
@@ -82,7 +83,6 @@ declared_weight_balbootstrapmean
 
 ```{r}
 library(boot)
-
 origin=read.csv("data/raw/runs.csv")
 source("scripts/data_cleaning.R")
 data=preprocessing(500)
@@ -113,3 +113,11 @@ plot(results_10000, index=4)
 plot(results_10000, index=5)
 plot(results_10000, index=6)
 ```
+
+# Conclusion
+
+Bootstrapping can be a powerful statistical technique in the right situation. It is invaluable for working with smaller sample sizes of data that are not large enough for straightforward data analysis. It can give crucial insight into the variance and distribution of population statistics, while also making it easier to work with data of an unknown distribution. In the context of regression models, bootstrapping to estimate the variance of regression coefficients gives insight as to how consistent our model is.
+
+Bootstrapping is limited by its central assumption that the original sample chosen represents the population well. If the original sample is not an unbiased subset of the population, then repeatedly sampling subsets of that sample will result in a similarly biased distribution. The amount of processing power needed for bootstrapping can also limit its effectiveness, especially when working with larger bootstrap samples and/or large amounts of resamples.
+
+Refer to our reference list in the README file for further study on bootstrapping.
