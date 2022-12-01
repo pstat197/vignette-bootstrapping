@@ -4,7 +4,7 @@ library(dplyr)
 
 preprocessing = function(n){
   
-  data=read.csv("data/raw/runs.csv")
+  data=read.csv("../data/raw/runs.csv")
   # randomly select n rows from the original dataset
   randomNum = sample(1:nrow(data), n)
   result =data %>% 
@@ -13,9 +13,6 @@ preprocessing = function(n){
              declared_weight, actual_weight,draw)) %>%
     mutate(r = c(1:nrow(data)))%>%
     mutate(won=factor(won))%>%
-    mutate(horse_country=factor(horse_country))%>%
-    mutate(horse_type=factor(horse_type))%>%
-    mutate(horse_type=factor(horse_type))%>%
     filter(r %in% randomNum)%>%
     select(-race_id)
   return(result)
