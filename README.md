@@ -10,6 +10,7 @@ Bootstrapping is a statistical technique used for estimating population statisti
 
 ### Abstract
 
+
 For our vignette, we will be using the example data listed below to perform logistic regression to attempt to predict whether a horse will win its race or not. Bootstrapping will be used to estimate population means for certain variables(e.g. weight and age) and improve the inferential usefulness of our model(s). We will also use bootstrapping to aid us in validating the predictive accuracy of our model. 
 
 ### Example Data
@@ -69,7 +70,7 @@ Our results folder contains our drafts, writeups, and conclusions for the vignet
 
 ## Reference list
 
-[Add more references here as needed]
+https://towardsdatascience.com/linear-regression-with-bootstrapping-4924c05d2a9
 
 MDSR 9.3 (https://mdsr-book.github.io/mdsr2e/ch-foundations.html#sec:boot)
 
