@@ -74,5 +74,7 @@ https://towardsdatascience.com/linear-regression-with-bootstrapping-4924c05d2a9
 
 MDSR 9.3 (https://mdsr-book.github.io/mdsr2e/ch-foundations.html#sec:boot)
 
+https://influentialpoints.com/Training/nonparametric-or-parametric_bootstrap.htm
 
+https://www.researchgate.net/profile/Daniel-Berrar/publication/332553015_Introduction_to_the_Non-Parametric_Bootstrap/links/5cbd1b29299bf12097766227/Introduction-to-the-Non-Parametric-Bootstrap.pdf
 
