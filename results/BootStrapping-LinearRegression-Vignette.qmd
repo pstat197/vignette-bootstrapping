@@ -110,15 +110,16 @@ declared_weight_balbootstrapmean
 
 # Bootstrapping in the context of Linear Regression
 
+We can also use bootstrapping to estimate the model coefficients for linear regression We build a logistic regression model to predict whether a horse will win in a race, using age, rating, declared weight, actual weight, and draw as predictors.
+
 ```{r}
-library(boot)
 origin=read.csv("../data/raw/runs.csv")
 source("../scripts/data_cleaning.R")
 data=preprocessing(500)
 
 ```
 
-We can also use bootstrapping to estimate the model coefficients for linear regression We build a logistic regression model to predict whether a horse will win in a race, using age, rating, declared weight, actual weight, and draw as predictors This is similar to bootstrapping for sample statistics, the only difference should be changing the returns for the function to be the coeficients of each fits.
+Similar to the basic use of bootstrapping for sample statistics, we need to first create a function for the statistics that we are interested in. Since we are interested in whether a horse can win in the race, the response variable is binary, we use glm() function with parameter family = "binomial"to do a logistic regression. The other difference should be changing the returns for the function to be the coefficients of each fits.
 
 ```{r}
 bs <- function(formula, data, indices) {
@@ -128,20 +129,29 @@ bs <- function(formula, data, indices) {
 }
 ```
 
-re-sample for 10000 times
+Try to re-sample for 10000 times and 100 times to see the influence of replication. 
 
 ```{r}
 results_10000 <- boot(data=data, statistic=bs,
                 R=10000, formula=won~horse_age+horse_rating+
                 declared_weight+ actual_weight+draw)
 results_10000
-plot(results_10000, index=1) 
-plot(results_10000, index=2)
-plot(results_10000, index=3)
-plot(results_10000, index=4) 
-plot(results_10000, index=5)
-plot(results_10000, index=6)
+results_100 <- boot(data=data, statistic=bs,
+                R=100, formula=won~horse_age+horse_rating+
+                declared_weight+ actual_weight+draw)
+results_100
 ```
+Choose some of the parameters to compare, we can generally get the similar results as the previous case. As the resampling times become larger, the distribution tends to be more normal.
+
+```{r}
+par (mfrow = c(4,3))
+plot(results_10000, index=1) 
+plot(results_100, index=1)
+plot(results_10000, index=3)
+plot(results_100, index=3) 
+
+```
+
 
 # Conclusion
 
