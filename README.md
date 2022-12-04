@@ -27,7 +27,7 @@ Students should also be able to construct confidence intervals from the distribu
 
 ## Contents
 
-Our data/raw folder contains the .csv files from the original Kaggle dataset. We are mainly focused on runs.csv which contains information about individual horse performances in the Hong Kong races. 
+Our data/raw folder contains the .csv files from the original Kaggle dataset. We are mainly focused on runs.csv which contains information about individual horse performances in the Hong Kong races. The codebook.txt contains variable descriptions of runs.csv
 
 
 The scripts folder contains our preprocessing scripts for reading and cleaning the data, exploratory data analysis, and our regression models. 
