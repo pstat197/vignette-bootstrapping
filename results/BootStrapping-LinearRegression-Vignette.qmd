@@ -129,7 +129,7 @@ bs <- function(formula, data, indices) {
 }
 ```
 
-Try to re-sample for 10000 times and 100 times to see the influence of replication. 
+Try to re-sample for 10000 times and 100 times to see the influence of replication.
 
 ```{r}
 results_10000 <- boot(data=data, statistic=bs,
@@ -141,6 +141,7 @@ results_100 <- boot(data=data, statistic=bs,
                 declared_weight+ actual_weight+draw)
 results_100
 ```
+
 Choose some of the parameters to compare, we can generally get the similar results as the previous case. As the resampling times become larger, the distribution tends to be more normal.
 
 ```{r}
@@ -151,7 +152,6 @@ plot(results_10000, index=3)
 plot(results_100, index=3) 
 
 ```
-
 
 # Conclusion
 
